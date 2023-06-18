@@ -7,10 +7,11 @@ export default function HomePage(props: any) {
   const fetchRecordsAPI = process.env.REACT_APP_API_RECORDS;
 
   const [record, setRecord] = useState<any>([]);
+  const [page, setPage] = useState<any>(1);
 
   const fetchRecord = async () => {
     try {
-      const response = await axios.get(`${fetchRecordsAPI}?page=2`);
+      const response = await axios.get(`${fetchRecordsAPI}?page=${page}`);
       setRecord(response?.data);
       console.log(response, response);
     } catch (error) {
@@ -20,11 +21,11 @@ export default function HomePage(props: any) {
 
   useEffect(() => {
     fetchRecord();
-  }, []);
+  }, [page]);
 
   return (
     <div>
-      <h1 className="text-2xl text-center p-4">welcome to the new world</h1>
+      <h1 className="text-2xl text-center p-4">Record with Pagination</h1>
       <Table striped highlightOnHover>
         <thead>
           <tr>
@@ -48,8 +49,25 @@ export default function HomePage(props: any) {
         </tbody>
       </Table>
       <div className="flex justify-center items-center mt-2">
-        <Button variant="default" disabled={true} className="mr-4">Previous</Button>
-        <Button variant="default" disabled={false}>Next</Button>
+        <Button
+          variant="default"
+          disabled={page <= 1}
+          onClick={() => {
+            if (page > 2) setPage(page - 1);
+          }}
+          className="mr-4"
+        >
+          Previous
+        </Button>
+        <Button
+          variant="default"
+          disabled={page >= 10}
+          onClick={() => {
+            if (page < 10) setPage(page + 1);
+          }}
+        >
+          Next
+        </Button>
       </div>
     </div>
   );
