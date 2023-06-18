@@ -4,7 +4,7 @@ export default function Main(props: any) {
   return (
     <>
       <NavigationHeader />
-      <>{props.children}</>
+      <div className="mt-24 max-w-screen-2xl mx-auto">{props.children}</div>
     </>
   );
 }
