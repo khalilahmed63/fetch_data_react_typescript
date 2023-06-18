@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { ColorSchemeToggle } from "../components/Common/ColorSchemeToggle";
+import { ColorSchemeToggle } from "../Common/ColorSchemeToggle";
 import { Header, createStyles } from "@mantine/core";
 import { Link } from "react-router-dom";
 

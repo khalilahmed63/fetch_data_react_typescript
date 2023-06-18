@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { Button, Table } from "@mantine/core";
+import axios from "axios";
 
 export default function HomePage(props: any) {
   const fetchRecordsAPI = process.env.REACT_APP_API_RECORDS;
@@ -13,7 +13,7 @@ export default function HomePage(props: any) {
     try {
       const response = await axios.get(`${fetchRecordsAPI}?page=${page}`);
       setRecord(response?.data);
-      console.log(response, response);
+      // console.log(response, response);
     } catch (error) {
       console.log(error);
     }
@@ -53,7 +53,7 @@ export default function HomePage(props: any) {
           variant="default"
           disabled={page <= 1}
           onClick={() => {
-            if (page > 2) setPage(page - 1);
+            if (page > 1) setPage(page - 1);
           }}
           className="mr-4"
         >
